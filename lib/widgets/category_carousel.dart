@@ -1,4 +1,4 @@
-import 'package:analytical_ecommerce/models/category_model.dart';
+import 'package:analytical_ecommerce/models/models.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCarousel extends StatelessWidget {
