@@ -2,21 +2,27 @@ import 'package:analytical_ecommerce/models/models.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCarousel extends StatelessWidget {
-  final Category category;
-  const CategoryCarousel({super.key, required this.category});
+  final Category? category;
+  final Product? product;
+  const CategoryCarousel({super.key, this.category, this.product});
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () =>
-          Navigator.pushNamed(context, '/catalog', arguments: category),
+      onTap: () {
+        if (product == null) {
+          Navigator.pushNamed(context, '/catalog', arguments: category);
+        }
+      },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
         child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(5.0)),
             child: Stack(
               children: <Widget>[
-                Image.network(category.imageUrl,
-                    fit: BoxFit.cover, width: 1000.0),
+                Image.network(
+                    product == null ? category!.imageUrl : product!.imageUrl,
+                    fit: BoxFit.cover,
+                    width: 1000.0),
                 Positioned(
                   bottom: 0.0,
                   left: 0.0,
@@ -34,7 +40,8 @@ class CategoryCarousel extends StatelessWidget {
                     ),
                     padding: const EdgeInsets.symmetric(
                         vertical: 10.0, horizontal: 20.0),
-                    child: Text(category.name,
+                    child: Text(
+                        product == null ? category!.name : '',
                         style: Theme.of(context)
                             .textTheme
                             .displayMedium!
