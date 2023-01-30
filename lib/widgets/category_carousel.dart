@@ -6,7 +6,9 @@ class CategoryCarousel extends StatelessWidget {
   const CategoryCarousel({super.key, required this.category});
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () =>
+          Navigator.pushNamed(context, '/catalog', arguments: category),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
         child: ClipRRect(
