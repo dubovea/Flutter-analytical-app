@@ -4,7 +4,15 @@ import 'package:flutter/material.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final double widthFactor;
-  const ProductCard({super.key, required this.product, this.widthFactor = 2.5});
+  final double leftPosition;
+  final bool isWishlist;
+
+  const ProductCard(
+      {super.key,
+      required this.product,
+      this.widthFactor = 2.5,
+      this.leftPosition = 5,
+      this.isWishlist = false});
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +30,17 @@ class ProductCard extends StatelessWidget {
               )),
           Positioned(
               top: 60,
+              left: leftPosition,
               child: Container(
+                width: widthValue - 5 - leftPosition,
                 height: 80,
-                width: widthValue,
                 decoration: BoxDecoration(color: Colors.black.withAlpha(50)),
               )),
           Positioned(
               bottom: 5,
-              left: 5,
+              left: leftPosition + 5,
               child: Container(
-                width: widthValue - 10,
+                width: widthValue - 15,
                 height: 51,
                 decoration: BoxDecoration(color: Colors.black.withOpacity(0.8)),
                 child: Padding(
@@ -60,14 +69,22 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.add_circle,
-                            color: Colors.white,
-                          )),
-                    )
+                    IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.add_circle,
+                          color: Colors.white,
+                        )),
+                    isWishlist
+                        ? Expanded(
+                            child: IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                )),
+                          )
+                        : SizedBox()
                   ]),
                 ),
               ))
