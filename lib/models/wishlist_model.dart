@@ -6,5 +6,5 @@ class Wishlist extends Equatable {
 
   const Wishlist({this.products = const <Product>[]});
   @override
-  List<Object?> get props => [products];
+  List<Object> get props => [products];
 }

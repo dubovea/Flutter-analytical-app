@@ -1,5 +1,7 @@
+import 'package:analytical_ecommerce/blocs/wishlist/wishlist_bloc.dart';
 import 'package:analytical_ecommerce/models/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
@@ -40,7 +42,7 @@ class ProductCard extends StatelessWidget {
               bottom: 5,
               left: leftPosition + 5,
               child: Container(
-                width: widthValue - 15,
+                width: widthValue - leftPosition,
                 height: 51,
                 decoration: BoxDecoration(color: Colors.black.withOpacity(0.8)),
                 child: Padding(
@@ -76,15 +78,26 @@ class ProductCard extends StatelessWidget {
                           color: Colors.white,
                         )),
                     isWishlist
-                        ? Expanded(
-                            child: IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
-                                )),
+                        ? BlocBuilder<WishlistBloc, WishlistState>(
+                            builder: (context, state) {
+                              return IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<WishlistBloc>()
+                                        .add(RemoveProductWishlist(product));
+                                    const snackBar = SnackBar(
+                                        content:
+                                            Text('Removed from ur wishlist'));
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(snackBar);
+                                  },
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    color: Colors.white,
+                                  ));
+                            },
                           )
-                        : SizedBox()
+                        : const SizedBox()
                   ]),
                 ),
               ))

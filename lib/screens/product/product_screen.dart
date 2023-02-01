@@ -106,12 +106,13 @@ class ProductScreen extends StatelessWidget {
       ]),
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
-        child: Container(
+        child: SizedBox(
           height: 70,
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             IconButton(
-                onPressed: () {}, icon: Icon(Icons.share, color: Colors.white)),
+                onPressed: () {},
+                icon: const Icon(Icons.share, color: Colors.white)),
             BlocBuilder<WishlistBloc, WishlistState>(
               builder: (context, state) {
                 return IconButton(
@@ -119,11 +120,11 @@ class ProductScreen extends StatelessWidget {
                       context
                           .read<WishlistBloc>()
                           .add(AddProductWishlist(product));
-                      final snackBar =
+                      const snackBar =
                           SnackBar(content: Text('Added to ur wishlist'));
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
-                    icon: Icon(Icons.favorite, color: Colors.white));
+                    icon: const Icon(Icons.favorite, color: Colors.white));
               },
             ),
             ElevatedButton(

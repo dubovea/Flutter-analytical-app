@@ -16,7 +16,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   void _onLoadWishList(StartWishlist event, Emitter<WishlistState> emit) async {
     emit(WishlistLoading());
     try {
-      await Future<void>.delayed(Duration(seconds: 1));
+      await Future<void>.delayed(const Duration(seconds: 1));
       emit(const WishlistLoaded());
     } catch (_) {}
   }
@@ -26,10 +26,12 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     final state = this.state;
     if (state is WishlistLoaded) {
       try {
-        emit(WishlistLoaded(
-            wishlist: Wishlist(
-                products: List.from(state.wishlist.products)
-                  ..add(event.product))));
+        if (!state.wishlist.products.toList().contains(event.product)) {
+          emit(WishlistLoaded(
+              wishlist: Wishlist(
+                  products: List.from(state.wishlist.products)
+                    ..add(event.product))));
+        }
       } catch (_) {}
     }
   }
