@@ -1,5 +1,4 @@
 import 'package:analytical_ecommerce/models/models.dart';
-import 'package:analytical_ecommerce/models/wishlist_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

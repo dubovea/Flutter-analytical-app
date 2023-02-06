@@ -1,3 +1,4 @@
+import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
 import 'package:analytical_ecommerce/blocs/wishlist/wishlist_bloc.dart';
 import 'package:analytical_ecommerce/config/app_router.dart';
 import 'package:analytical_ecommerce/config/theme.dart';
@@ -19,6 +20,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => WishlistBloc()..add(StartWishlist()),
+        ),
+        BlocProvider(
+          create: (context) => CartBloc()..add(LoadCart()),
         )
       ],
       child: MaterialApp(

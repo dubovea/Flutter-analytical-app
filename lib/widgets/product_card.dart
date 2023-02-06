@@ -1,3 +1,4 @@
+import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
 import 'package:analytical_ecommerce/blocs/wishlist/wishlist_bloc.dart';
 import 'package:analytical_ecommerce/models/product_model.dart';
 import 'package:flutter/material.dart';
@@ -71,12 +72,26 @@ class ProductCard extends StatelessWidget {
                         ],
                       ),
                     ),
-                    IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.add_circle,
-                          color: Colors.white,
-                        )),
+                    BlocBuilder<CartBloc, CartState>(
+                      builder: (context, state) {
+                        return Expanded(
+                          child: IconButton(
+                              onPressed: () {
+                                context
+                                    .read<CartBloc>()
+                                    .add(AddProductToCart(product));
+                                const snackBar = SnackBar(
+                                    content: Text('Товар добавлен в корзину'));
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                              },
+                              icon: const Icon(
+                                Icons.add_circle,
+                                color: Colors.white,
+                              )),
+                        );
+                      },
+                    ),
                     isWishlist
                         ? BlocBuilder<WishlistBloc, WishlistState>(
                             builder: (context, state) {

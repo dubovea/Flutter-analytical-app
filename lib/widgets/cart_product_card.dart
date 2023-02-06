@@ -1,6 +1,7 @@
-
+import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
 import 'package:analytical_ecommerce/models/models.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartProductCard extends StatelessWidget {
   final Product product;
@@ -34,9 +35,36 @@ class CartProductCard extends StatelessWidget {
           ),
           Row(
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.remove_circle)),
-              Text('1', style: Theme.of(context).textTheme.headlineSmall),
-              IconButton(onPressed: () {}, icon: Icon(Icons.add_circle)),
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return IconButton(
+                      onPressed: () {
+                        context
+                            .read<CartBloc>()
+                            .add(RemoveProductFromCart(product));
+                        const snackBar =
+                            SnackBar(content: Text('Товар удалён из корзины'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      icon: const Icon(Icons.remove_circle));
+                },
+              ),
+              Text(product.count.toString(),
+                  style: Theme.of(context).textTheme.headlineSmall),
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return IconButton(
+                      onPressed: () {
+                        context
+                            .read<CartBloc>()
+                            .add(AddProductToCart(product));
+                        const snackBar =
+                            SnackBar(content: Text('Товар добавлен в корзину'));
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      icon: const Icon(Icons.add_circle));
+                },
+              ),
             ],
           )
         ],
