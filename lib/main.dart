@@ -4,11 +4,13 @@ import 'package:analytical_ecommerce/blocs/wishlist/wishlist_bloc.dart';
 import 'package:analytical_ecommerce/config/app_router.dart';
 import 'package:analytical_ecommerce/config/theme.dart';
 import 'package:analytical_ecommerce/screens/widgets.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
-void main() async {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Bloc.observer = Observer();
   runApp(const MyApp());
 }
