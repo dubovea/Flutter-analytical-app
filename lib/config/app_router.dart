@@ -1,4 +1,3 @@
-import 'package:analytical_ecommerce/models/category_model.dart';
 import 'package:analytical_ecommerce/models/models.dart';
 import 'package:analytical_ecommerce/screens/widgets.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,8 @@ class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
     print('The current Route is: ${settings.name}');
     switch (settings.name) {
+      case StartScreen.routeName:
+        return StartScreen.route();
       case HomeScreen.routeName:
         return HomeScreen.route();
       case CartScreen.routeName:

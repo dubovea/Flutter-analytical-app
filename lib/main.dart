@@ -2,7 +2,7 @@ import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
 import 'package:analytical_ecommerce/blocs/wishlist/wishlist_bloc.dart';
 import 'package:analytical_ecommerce/config/app_router.dart';
 import 'package:analytical_ecommerce/config/theme.dart';
-import 'package:analytical_ecommerce/screens/home/home_screen.dart';
+import 'package:analytical_ecommerce/screens/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,9 +29,8 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: theme(),
-        home: const HomeScreen(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: HomeScreen.routeName,
+        initialRoute: StartScreen.routeName,
       ),
     );
   }

@@ -38,9 +38,9 @@ class HomeScreen extends StatelessWidget {
                     .map((category) => CategoryCarousel(category: category))
                     .toList(),
               ),
-              SectionTitle(title: 'RECOMMENDED'),
+              const SectionTitle(title: 'RECOMMENDED'),
               ProductCarousel(products: productsRecommended),
-              SectionTitle(title: 'POPULAR'),
+              const SectionTitle(title: 'POPULAR'),
               ProductCarousel(products: productsPopular),
             ],
           ),
