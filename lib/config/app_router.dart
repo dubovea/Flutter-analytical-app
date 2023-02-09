@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class AppRouter {
   static Route onGenerateRoute(RouteSettings settings) {
+    // ignore: avoid_print
     print('The current Route is: ${settings.name}');
     switch (settings.name) {
       case StartScreen.routeName:

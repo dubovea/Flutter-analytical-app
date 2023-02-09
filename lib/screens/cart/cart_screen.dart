@@ -152,8 +152,9 @@ class CartScreen extends StatelessWidget {
                     )
                   ]),
             );
-          } else
-            return Text('Error with cart loading');
+          } else {
+            return const Text('Error with cart loading');
+          }
         },
       ),
       bottomNavigationBar: BottomAppBar(
