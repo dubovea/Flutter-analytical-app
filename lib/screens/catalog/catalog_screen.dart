@@ -32,7 +32,9 @@ class CatalogScreen extends StatelessWidget {
                   product: categoryProducts[index],
                 ),
               )),
-      bottomNavigationBar: const CustomBottomBar(),
+      bottomNavigationBar: CustomBottomBar(
+        screen: routeName,
+      ),
     );
   }
 }

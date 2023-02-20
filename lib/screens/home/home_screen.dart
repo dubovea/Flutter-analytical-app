@@ -80,7 +80,9 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const CustomBottomBar(),
+      bottomNavigationBar: const CustomBottomBar(
+        screen: routeName,
+      ),
     );
   }
 }
