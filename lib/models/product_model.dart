@@ -23,6 +23,17 @@ class Product extends Equatable {
   List<Object> get props =>
       [name, imageUrl, price, isRecommended, isPopular, count];
 
+  static Product fromSnapshot(snapshot) {
+    Product product = Product(
+        name: snapshot['name'],
+        imageUrl: snapshot['imageUrl'],
+        category: snapshot['category'],
+        isPopular: snapshot['isPopular'],
+        isRecommended: snapshot['isRecommended'],
+        price: snapshot['price']);
+    return product;
+  }
+
   static List<Product> products = [
     Product(
         name: 'PEPSI',

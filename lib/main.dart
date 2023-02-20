@@ -1,8 +1,12 @@
 import 'package:analytical_ecommerce/bloc_observer.dart';
 import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
+import 'package:analytical_ecommerce/blocs/category/category_bloc.dart';
+import 'package:analytical_ecommerce/blocs/product/product_bloc.dart';
 import 'package:analytical_ecommerce/blocs/wishlist/wishlist_bloc.dart';
 import 'package:analytical_ecommerce/config/app_router.dart';
 import 'package:analytical_ecommerce/config/theme.dart';
+import 'package:analytical_ecommerce/repositories/category/category_repo.dart';
+import 'package:analytical_ecommerce/repositories/product/product_repo.dart';
 import 'package:analytical_ecommerce/screens/widgets.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +32,16 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CartBloc()..add(LoadCart()),
+        ),
+        BlocProvider(
+          create: (context) => CategoryBloc(
+            categoryRepo: CategoryRepo(),
+          )..add(LoadCategory()),
+        ),
+        BlocProvider(
+          create: (context) => ProductBloc(
+            productRepo: ProductRepo(),
+          )..add(LoadProduct()),
         )
       ],
       child: MaterialApp(

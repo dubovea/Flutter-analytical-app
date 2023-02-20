@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 class Category extends Equatable {
   final String name;
@@ -8,6 +9,12 @@ class Category extends Equatable {
     required this.name,
     required this.imageUrl,
   });
+
+  static Category fromSnapshot(snapshot) {
+    Category category =
+        Category(name: snapshot['name'], imageUrl: snapshot['imageUrl']);
+    return category;
+  }
 
   @override
   List<Object> get props => [name, imageUrl];
