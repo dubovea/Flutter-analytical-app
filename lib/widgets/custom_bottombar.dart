@@ -1,4 +1,5 @@
 import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
+import 'package:analytical_ecommerce/blocs/checkout/checkout_bloc.dart';
 import 'package:analytical_ecommerce/screens/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -98,12 +99,28 @@ class CustomBottomBar extends StatelessWidget {
 
   List<Widget> _buildOrderNowNavBar(context) {
     return [
-      ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            shape: const RoundedRectangleBorder()),
-        onPressed: () {},
-        child: Text('КУПИТЬ', style: Theme.of(context).textTheme.displaySmall),
+      BlocBuilder<CheckoutBloc, CheckoutState>(
+        builder: (context, state) {
+          if (state is CheckoutLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          if (state is CheckoutLoaded) {
+            return ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  shape: const RoundedRectangleBorder()),
+              onPressed: () {
+                context
+                    .read<CheckoutBloc>()
+                    .add(ConfirmCheckout(checkout: state.checkout));
+                Navigator.pushNamed(context, '/');
+              },
+              child: Text('КУПИТЬ',
+                  style: Theme.of(context).textTheme.displaySmall),
+            );
+          }
+          return const Text('Error loading order bottom bar');
+        },
       )
     ];
   }
