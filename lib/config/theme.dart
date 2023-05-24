@@ -13,7 +13,7 @@ ThemeData theme() {
         displayMedium: TextStyle(
           color: Color(0xFF1B070B),
           fontWeight: FontWeight.bold,
-          fontSize: 24,
+          fontSize: 22,
         ),
         displaySmall: TextStyle(
           color: Color(0xFF1B070B),

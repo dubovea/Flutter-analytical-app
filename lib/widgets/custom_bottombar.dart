@@ -32,6 +32,8 @@ class CustomBottomBar extends StatelessWidget {
         return _buildNavBar(context);
       case '/wishlist':
         return _buildNavBar(context);
+      case '/order-confirmation':
+        return _buildNavBar(context);
       case '/product':
         return _buildNavBar(context);
       case '/cart':
@@ -113,7 +115,7 @@ class CustomBottomBar extends StatelessWidget {
                 context
                     .read<CheckoutBloc>()
                     .add(ConfirmCheckout(checkout: state.checkout));
-                Navigator.pushNamed(context, '/');
+                Navigator.pushNamed(context, '/order-confirmation');
               },
               child: Text('КУПИТЬ',
                   style: Theme.of(context).textTheme.displaySmall),
