@@ -1,4 +1,5 @@
 import 'package:analytical_ecommerce/models/models.dart';
+import 'package:analytical_ecommerce/screens/payment_selection/payment_selection.dart';
 import 'package:analytical_ecommerce/screens/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,8 @@ class AppRouter {
         return CheckoutScreen.route();
       case OrderConfirmation.routeName:
         return OrderConfirmation.route();
+      case PaymentSelection.routeName:
+        return PaymentSelection.route();
       default:
         return _errorRoute();
     }

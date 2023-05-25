@@ -17,7 +17,7 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Checkout'),
+      appBar: const CustomAppBar(title: 'Заказ'),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: BlocBuilder<CheckoutBloc, CheckoutState>(
@@ -31,45 +31,72 @@ class CheckoutScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'CUSTOM INFORMATION',
+                      'ИНФО КЛИЕНТА',
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     _buildTextFormField((value) {
                       context
                           .read<CheckoutBloc>()
                           .add(UpdateCheckout(email: value));
-                    }, context, 'Email'),
+                    }, context, 'Почта'),
                     _buildTextFormField((value) {
                       context
                           .read<CheckoutBloc>()
                           .add(UpdateCheckout(name: value));
-                    }, context, 'Full name'),
+                    }, context, 'ФИО'),
                     Text(
-                      'DELIVERY INFORMATION',
+                      'ИНФО ДОСТАВКА',
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     _buildTextFormField((value) {
                       context
                           .read<CheckoutBloc>()
                           .add(UpdateCheckout(address: value));
-                    }, context, 'Address'),
+                    }, context, 'Адрес'),
                     _buildTextFormField((value) {
                       context
                           .read<CheckoutBloc>()
                           .add(UpdateCheckout(city: value));
-                    }, context, 'City'),
+                    }, context, 'Город'),
                     _buildTextFormField((value) {
                       context
                           .read<CheckoutBloc>()
                           .add(UpdateCheckout(country: value));
-                    }, context, 'Country'),
+                    }, context, 'Страна'),
                     _buildTextFormField((value) {
                       context
                           .read<CheckoutBloc>()
                           .add(UpdateCheckout(zipCode: value));
-                    }, context, 'Zip Code'),
+                    }, context, 'Индекс'),
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 60,
+                      decoration: const BoxDecoration(color: Colors.black),
+                      alignment: Alignment.bottomCenter,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Center(
+                                child: TextButton(
+                              child: Text('ВЫБЕРИТЕ СПОСОБ ОПЛАТЫ',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displaySmall!
+                                      .copyWith(color: Colors.white)),
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/payment-selection');
+                              },
+                            )),
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                )),
+                          ]),
+                    ),
                     Text(
-                      'ORDER SUMMARY',
+                      'К ОПЛАТЕ',
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
                     const OrderSummary()

@@ -44,7 +44,9 @@ dependencies:
   firebase_auth: 4.5.0
   firebase_messaging: 14.5.0
   firebase_crashlytics: 3.2.0
-  flutter_svg: ^1.0.0
+  flutter_svg: ^2.0.5
+  pay: ^1.1.1
+  yandex_mobileads: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,7 @@ flutter:
   assets:
     - assets/images/
     - assets/svgs/
+    - assets/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

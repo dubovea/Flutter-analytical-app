@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
 import 'package:analytical_ecommerce/blocs/checkout/checkout_bloc.dart';
-import 'package:analytical_ecommerce/screens/widgets.dart';
+import 'package:analytical_ecommerce/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pay/pay.dart';
 
 class CustomBottomBar extends StatelessWidget {
   final String screen;
@@ -107,19 +110,25 @@ class CustomBottomBar extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
           if (state is CheckoutLoaded) {
+            if (Platform.isIOS) {
+              return ApplePayButton(
+                onPaymentResult: (Map<String, dynamic> result) {},
+                paymentItems: [],
+              );
+            }
+            if (Platform.isAndroid) {
+              return GooglePay(
+                products: state.products!,
+                total: state.total!,
+              );
+            }
+
             return ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: const RoundedRectangleBorder()),
-              onPressed: () {
-                context
-                    .read<CheckoutBloc>()
-                    .add(ConfirmCheckout(checkout: state.checkout));
-                Navigator.pushNamed(context, '/order-confirmation');
-              },
-              child: Text('КУПИТЬ',
-                  style: Theme.of(context).textTheme.displaySmall),
-            );
+                onPressed: () {
+                  Navigator.pushNamed(context, '/payment-selection');
+                },
+                child: Text('ВЫБЕРИТЕ ОПЛАТУ',
+                    style: Theme.of(context).textTheme.displaySmall));
           }
           return const Text('Error loading order bottom bar');
         },
