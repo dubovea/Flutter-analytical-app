@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
 import 'package:analytical_ecommerce/blocs/checkout/checkout_bloc.dart';
+import 'package:analytical_ecommerce/models/models.dart';
 import 'package:analytical_ecommerce/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,16 +112,48 @@ class CustomBottomBar extends StatelessWidget {
           }
           if (state is CheckoutLoaded) {
             if (Platform.isIOS) {
-              return ApplePayButton(
-                onPaymentResult: (Map<String, dynamic> result) {},
-                paymentItems: [],
-              );
+              switch (state.paymentMethod) {
+                case PaymentMethod.apple_pay:
+                  return ApplePayButton(
+                    onPaymentResult: (Map<String, dynamic> result) {},
+                    paymentItems: [],
+                  );
+                case PaymentMethod.credit_card:
+                  return Container(
+                    child: Text('Банковская карта',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.white)),
+                  );
+                default:
+                  return ApplePayButton(
+                    onPaymentResult: (Map<String, dynamic> result) {},
+                    paymentItems: [],
+                  );
+              }
             }
             if (Platform.isAndroid) {
-              return GooglePay(
-                products: state.products!,
-                total: state.total!,
-              );
+              switch (state.paymentMethod) {
+                case PaymentMethod.google_pay:
+                  return GooglePay(
+                    products: state.products!,
+                    total: state.total!,
+                  );
+                case PaymentMethod.credit_card:
+                  return Container(
+                    child: Text('Банковская карта',
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.white)),
+                  );
+                default:
+                  return GooglePay(
+                    products: state.products!,
+                    total: state.total!,
+                  );
+              }
             }
 
             return ElevatedButton(

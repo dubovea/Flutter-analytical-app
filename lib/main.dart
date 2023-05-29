@@ -2,6 +2,7 @@ import 'package:analytical_ecommerce/bloc_observer.dart';
 import 'package:analytical_ecommerce/blocs/cart/cart_bloc.dart';
 import 'package:analytical_ecommerce/blocs/category/category_bloc.dart';
 import 'package:analytical_ecommerce/blocs/checkout/checkout_bloc.dart';
+import 'package:analytical_ecommerce/blocs/payment/payment_bloc.dart';
 import 'package:analytical_ecommerce/blocs/product/product_bloc.dart';
 import 'package:analytical_ecommerce/blocs/wishlist/wishlist_bloc.dart';
 import 'package:analytical_ecommerce/config/app_router.dart';
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
           create: (context) => CartBloc()..add(LoadCart()),
         ),
         BlocProvider(
+          create: (context) => PaymentBloc()..add(LoadPaymentMethod()),
+        ),
+        BlocProvider(
           create: (context) => CategoryBloc(
             categoryRepo: CategoryRepo(),
           )..add(LoadCategory()),
@@ -47,7 +51,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
             create: (context) => CheckoutBloc(
-                cartBloc: context.read<CartBloc>(), checkoutRepo: CheckoutRepo()))
+                cartBloc: context.read<CartBloc>(),
+                paymentBloc: context.read<PaymentBloc>(),
+                checkoutRepo: CheckoutRepo()))
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
