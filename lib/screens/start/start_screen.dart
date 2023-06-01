@@ -33,7 +33,7 @@ class StartScreen extends StatelessWidget {
             color: Colors.black,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              'Zero To Unicorn',
+              'Продуктовый магазин',
               style: Theme.of(context)
                   .textTheme
                   .displaySmall

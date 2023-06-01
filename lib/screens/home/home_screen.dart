@@ -41,7 +41,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Zero to Unicorn'),
+      appBar: const CustomAppBar(title: 'Продуктовый магазин'),
       body: ListView(
         shrinkWrap: true,
         children: [
@@ -72,9 +72,9 @@ class HomeScreen extends StatelessWidget {
                   }
                 },
               ),
-              const SectionTitle(title: 'RECOMMENDED'),
+              const SectionTitle(title: 'РЕКОМЕНДУЕТСЯ'),
               productBuilder(isRecommended: true),
-              const SectionTitle(title: 'POPULAR'),
+              const SectionTitle(title: 'ПОПУЛЯРНЫЕ'),
               productBuilder(isPopular: true)
             ],
           ),
