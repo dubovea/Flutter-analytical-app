@@ -99,7 +99,7 @@ class OrderConfirmation extends StatelessWidget {
           )
         ],
       )),
-      bottomNavigationBar: const CustomBottomBar(screen: routeName),
+      bottomNavigationBar:  CustomBottomBar(screen: routeName),
     );
   }
 }

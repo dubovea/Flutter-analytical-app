@@ -207,13 +207,12 @@ class ProductBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         width: adjWidth - 10,
-        height: 80,
+        height: 70,
         margin: const EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(color: Colors.black.withAlpha(50)),
         child: Container(
           width: adjWidth - 20,
           height: 70,
-          margin: const EdgeInsets.only(bottom: 5),
           decoration: BoxDecoration(color: Colors.black.withOpacity(0.8)),
           child: Padding(
             padding: const EdgeInsets.all(8.0),

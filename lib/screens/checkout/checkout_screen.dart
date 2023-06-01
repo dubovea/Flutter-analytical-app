@@ -34,40 +34,52 @@ class CheckoutScreen extends StatelessWidget {
                       'ИНФО КЛИЕНТА',
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
-                    _buildTextFormField((value) {
-                      context
-                          .read<CheckoutBloc>()
-                          .add(UpdateCheckout(email: value));
-                    }, context, 'Почта'),
-                    _buildTextFormField((value) {
-                      context
-                          .read<CheckoutBloc>()
-                          .add(UpdateCheckout(name: value));
-                    }, context, 'ФИО'),
+                    CustomTextFromField(
+                        title: 'Почта',
+                        onChanged: (value) {
+                          context
+                              .read<CheckoutBloc>()
+                              .add(UpdateCheckout(email: value));
+                        }),
+                    CustomTextFromField(
+                        title: 'ФИО',
+                        onChanged: (value) {
+                          context
+                              .read<CheckoutBloc>()
+                              .add(UpdateCheckout(name: value));
+                        }),
                     Text(
                       'ИНФО ДОСТАВКА',
                       style: Theme.of(context).textTheme.displaySmall,
                     ),
-                    _buildTextFormField((value) {
-                      context
-                          .read<CheckoutBloc>()
-                          .add(UpdateCheckout(address: value));
-                    }, context, 'Адрес'),
-                    _buildTextFormField((value) {
-                      context
-                          .read<CheckoutBloc>()
-                          .add(UpdateCheckout(city: value));
-                    }, context, 'Город'),
-                    _buildTextFormField((value) {
-                      context
-                          .read<CheckoutBloc>()
-                          .add(UpdateCheckout(country: value));
-                    }, context, 'Страна'),
-                    _buildTextFormField((value) {
-                      context
-                          .read<CheckoutBloc>()
-                          .add(UpdateCheckout(zipCode: value));
-                    }, context, 'Индекс'),
+                    CustomTextFromField(
+                        title: 'Адрес',
+                        onChanged: (value) {
+                          context
+                              .read<CheckoutBloc>()
+                              .add(UpdateCheckout(address: value));
+                        }),
+                    CustomTextFromField(
+                        title: 'Город',
+                        onChanged: (value) {
+                          context
+                              .read<CheckoutBloc>()
+                              .add(UpdateCheckout(city: value));
+                        }),
+                    CustomTextFromField(
+                        title: 'Страна',
+                        onChanged: (value) {
+                          context
+                              .read<CheckoutBloc>()
+                              .add(UpdateCheckout(country: value));
+                        }),
+                    CustomTextFromField(
+                        title: 'Индекс',
+                        onChanged: (value) {
+                          context
+                              .read<CheckoutBloc>()
+                              .add(UpdateCheckout(zipCode: value));
+                        }),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: 60,
@@ -84,7 +96,8 @@ class CheckoutScreen extends StatelessWidget {
                                       .displaySmall!
                                       .copyWith(color: Colors.white)),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/payment-selection');
+                                Navigator.pushNamed(
+                                    context, '/payment-selection');
                               },
                             )),
                             IconButton(
@@ -109,30 +122,6 @@ class CheckoutScreen extends StatelessWidget {
       bottomNavigationBar: const CustomBottomBar(
         screen: routeName,
       ),
-    );
-  }
-
-  _buildTextFormField(
-      Function(String?) onChanged, BuildContext context, String labelText) {
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Row(children: [
-        SizedBox(
-            width: 75,
-            child:
-                Text(labelText, style: Theme.of(context).textTheme.titleLarge)),
-        Expanded(
-            child: TextFormField(
-          onChanged: onChanged,
-          decoration: const InputDecoration(
-              isDense: true,
-              contentPadding: EdgeInsets.only(left: 10),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                color: Colors.black,
-              ))),
-        ))
-      ]),
     );
   }
 }
