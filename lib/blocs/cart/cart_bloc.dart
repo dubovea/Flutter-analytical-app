@@ -35,6 +35,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             Cart(products: List.from(state.cart.products.map((Product product) {
           if (product.name == event.product.name) {
             return Product(
+                id: product.id,
                 name: product.name,
                 imageUrl: product.imageUrl,
                 price: product.price,
@@ -66,6 +67,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             Cart(products: List.from(state.cart.products.map((Product product) {
           if (product.name == event.product.name) {
             return Product(
+                id: product.id,
                 name: product.name,
                 imageUrl: product.imageUrl,
                 price: product.price,
