@@ -21,10 +21,13 @@ class Product extends Equatable {
   final bool isPopular;
   @HiveField(7)
   int count;
+  @HiveField(8)
+  String description;
 
   Product(
       {required this.id,
       required this.name,
+      this.description = 'Описание не заполнено',
       required this.imageUrl,
       required this.price,
       required this.isRecommended,
@@ -34,12 +37,13 @@ class Product extends Equatable {
 
   @override
   List<Object> get props =>
-      [id, name, imageUrl, price, isRecommended, isPopular, count];
+      [id, name, imageUrl, price, isRecommended, isPopular, count, description];
 
   static Product fromSnapshot(snapshot) {
     Product product = Product(
         id: snapshot.id,
         name: snapshot['name'],
+        description: snapshot['description'],
         imageUrl: snapshot['imageUrl'],
         category: snapshot['category'],
         isPopular: snapshot['isPopular'],

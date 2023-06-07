@@ -76,12 +76,12 @@ class ProductScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ExpansionTile(
-              title: Text('Product Information',
+              title: Text('Информация о продукте',
                   style: Theme.of(context).textTheme.displaySmall),
               children: [
                 ListTile(
                   title: Text(
-                    'газированный безалкогольный напиток, производимый компанией PepsiCo. Первоначально созданный и разработанный в 1893 году Калебом Брэдхемом и представленный как напиток Брэда, он был переименован в Pepsi-Cola в 1898 году, а затем сокращён до Pepsi в 1961 году.',
+                    product.description,
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                 )
@@ -91,7 +91,7 @@ class ProductScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: ExpansionTile(
-              title: Text('Delivery Information',
+              title: Text('Информация о доставке',
                   style: Theme.of(context).textTheme.displaySmall),
               children: [
                 ListTile(

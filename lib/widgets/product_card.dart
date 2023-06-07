@@ -192,7 +192,7 @@ class ProductImage extends StatelessWidget {
         height: height,
         child: Image.network(
           product.imageUrl,
-          fit: BoxFit.contain,
+          fit: BoxFit.cover,
         ));
   }
 }
@@ -215,7 +215,7 @@ class ProductBackground extends StatelessWidget {
           height: 70,
           decoration: BoxDecoration(color: Colors.black.withOpacity(0.8)),
           child: Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(5.0),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [...widgets]),
@@ -291,11 +291,7 @@ class ProductActions extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall);
 
             if (isCatalog) {
-              return Row(
-                children: [
-                  addProduct,
-                ],
-              );
+              return addProduct;
             }
             if (isWishlist) {
               return Row(
